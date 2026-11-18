@@ -1,5 +1,5 @@
 'use client';
-
+export const dynamic = 'force-dynamic';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '../../../../lib/supabase';
@@ -529,7 +529,7 @@ export default function PatientRecordPage() {
           onError={(e) => {
             e.currentTarget.style.display = 'none';
           }}
-          className="h-16 w-auto object-contain"
+          className="h-24 w-auto object-contain"
         />
       </div>
 
