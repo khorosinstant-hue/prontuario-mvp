@@ -121,13 +121,6 @@ function PatientRecordContent() {
       return;
     }
 
-    export default function PatientRecordPage() {
-  return (
-    <Suspense fallback={<div className="p-6 text-sm text-gray-500">Carregando prontuário...</div>}>
-      <PatientRecordContent />
-    </Suspense>
-  );
-}
     const { data: profileData } = await supabase
       .from('psychologists')
       .select('id, full_name, crp_number, email')
@@ -148,6 +141,8 @@ function PatientRecordContent() {
       return;
     }
 
+    
+}
     setPatient(patientData);
 
     if (!hasLoggedView.current) {
@@ -1013,5 +1008,12 @@ function PatientRecordContent() {
         </section>
       </main>
     </div>
+  );
+}
+export default function PatientRecordPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-sm text-gray-500">Carregando prontuário...</div>}>
+      <PatientRecordContent />
+    </Suspense>
   );
 }
