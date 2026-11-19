@@ -1,7 +1,7 @@
 'use client';
-export const dynamic = 'force-dynamic';
-export const instant = false;
-import { useEffect, useState, useCallback, useRef } from 'react';
+
+
+import { Suspense, useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '../../../../lib/supabase';
 
@@ -74,7 +74,7 @@ const RECORD_TYPE_LABELS: Record<SessionEvolution['record_type'], string> = {
   closure: 'Encerramento / Alta',
 };
 
-export default function PatientRecordPage() {
+function PatientRecordContent() {
   const router = useRouter();
   const params = useParams();
   const patientId = params.id as string;
@@ -121,6 +121,13 @@ export default function PatientRecordPage() {
       return;
     }
 
+    export default function PatientRecordPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-sm text-gray-500">Carregando prontuário...</div>}>
+      <PatientRecordContent />
+    </Suspense>
+  );
+}
     const { data: profileData } = await supabase
       .from('psychologists')
       .select('id, full_name, crp_number, email')
