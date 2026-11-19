@@ -142,7 +142,7 @@ function PatientRecordContent() {
     }
 
     
-}
+   
     setPatient(patientData);
 
     if (!hasLoggedView.current) {
